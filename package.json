@@ -1,0 +1,24 @@
+{
+  "name": "nodejspractice",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/aayusht200/nodejsPractice#readme",
+  "bugs": {
+    "url": "https://github.com/aayusht200/nodejsPractice/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aayusht200/nodejsPractice.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "lodash": "^4.18.1"
+  }
+}
