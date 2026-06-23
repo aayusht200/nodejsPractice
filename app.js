@@ -9,6 +9,12 @@ app.get('/', (req, res) => {
 app.get('/index', (req, res) => {
     res.sendFile(path.resolve('./index.html'));
 });
+app.get('/contact-me', (req, res) => {
+    res.sendFile(path.resolve('./contact-me.html'));
+});
+app.get('/about-me', (req, res) => {
+    res.sendFile(path.resolve('./about.html'));
+});
 app.use((req, res) => {
     res.status(404).sendFile(path.resolve('./404.html'));
 });
