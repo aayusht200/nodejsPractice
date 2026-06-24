@@ -1,28 +1,38 @@
 import express from 'express';
 import path from 'path';
+
+// Loads variables from a .env file into process.env
 process.loadEnvFile();
+
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-const __dirname = import.meta.dirname;
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(import.meta.dirname, 'public')));
 
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(import.meta.dirname, 'views'));
 app.set('view engine', 'ejs');
-
-const assetsPath = path.join(__dirname, 'public');
-app.use(express.static(assetsPath));
-
-const links = [
-    { href: '/', text: 'Home' },
-    { href: '/about', text: 'About' },
+const messages = [
+    {
+        text: 'Hi there!',
+        user: 'Amando',
+        added: new Date(),
+    },
+    {
+        text: 'Hello World!',
+        user: 'Charles',
+        added: new Date(),
+    },
 ];
-
-const users = ['Rose', 'Cake', 'Biff'];
-
-app.get('/', (req, res) => {
-    res.render('index', { links: links, users: users });
+app.post('/new', (req, res) => {
+    const { name, message } = req.body;
+    messages.push({ text: message, user: name, added: new Date() });
+    res.redirect('/');
 });
-
-app.listen(port, () => {
-    console.log(`Listening on ${port}`);
+app.get('/', (req, res) => {
+    res.render('index', { title: 'Mini Messageboard', messages: messages });
+});
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
 });

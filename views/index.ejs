@@ -5,15 +5,14 @@
     <title>Homepage</title>
   </head>
   <body>
-    <%- include('navbar', {links: links}) %>
+    <h1><%= title %></h1>
 
 <!-- index.ejs -->
-<ul>
-  <% users.forEach((user) => { %>
-    <%- include('users/user', {user: user}); %>
-  <% }); %>
-</ul>
-
-
+    <% messages.forEach((element) => { %>
+        <%=element.user%>
+       : <%= element.text %>
+        <br>
+    <% }) %>
+<%- include('form') %>
   </body>
 </html>
